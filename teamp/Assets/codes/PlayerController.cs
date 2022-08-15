@@ -7,19 +7,23 @@ public class PlayerController : MonoBehaviour
     //Movement
     public float speed;
     public float jump;
+    int jumpavailable = 1;
     float moveVelocity;
-
+    public int jumpsnumber = 1;
     //Grounded Vars
-    bool grounded = true;
+    
+
+    void start(){jumpavailable = jumpsnumber;}
 
     void Update () 
     {
         //Jumping
         if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Z) || Input.GetKeyDown (KeyCode.W)) 
         {
-            if(grounded)
+            if(jumpavailable>0)
             {
-                GetComponent<Rigidbody2D> ().velocity = new Vector2 (GetComponent<Rigidbody2D> ().velocity.x, jump);
+                GetComponent<Rigidbody2D> ().velocity = new Vector2 (GetComponent<Rigidbody2D> ().velocity.x, jump); 
+                jumpavailable--;
             }
         }
 
@@ -41,10 +45,7 @@ public class PlayerController : MonoBehaviour
     //Check if Grounded
     void OnTriggerEnter2D()
     {
-        grounded = true;
+        jumpavailable = jumpsnumber;
     }
-    void OnTriggerExit2D()
-    {
-        grounded = false;
-    }
+    
 }
