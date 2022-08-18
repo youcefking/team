@@ -15,4 +15,9 @@ public class mazewalls : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D()
+    {
+        Destroy(gameObject,.1f);
+    }
 }
