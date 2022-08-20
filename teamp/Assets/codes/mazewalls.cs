@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class mazewalls : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -13,11 +14,17 @@ public class mazewalls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void OnTriggerEnter2D()
     {
-        Destroy(gameObject,.1f);
+         
+         gameObject.GetComponent<SpriteRenderer>().enabled = false;
+         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+    }
+    void OnTriggerExit2D()
+    {    
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        
     }
 }
